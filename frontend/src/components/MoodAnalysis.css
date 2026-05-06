@@ -1,24 +1,55 @@
-.mood-analysis { max-width: 480px; margin: 0 auto; }
-.mood-progress { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
-.mood-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: var(--transition); }
-.mood-dot.active { background: var(--primary); transform: scale(1.3); }
-.mood-dot.done { background: var(--secondary); }
-.mood-card { text-align: center; padding: 32px; background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
-.mood-emoji { font-size: 48px; margin-bottom: 12px; }
-.mood-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
-.mood-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+/* ── MoodAnalysis — Neumorphic ── */
+
+.mood-analysis {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-container); padding: 32px;
+}
+.mood-progress {
+  display: flex; gap: 8px; justify-content: center; margin-bottom: 24px;
+}
+.mood-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); box-shadow: var(--neu-small);
+  transition: var(--transition);
+}
+.mood-dot.active { background: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.2); }
+.mood-dot.done { background: var(--accent-secondary); }
+
+.mood-card { text-align: center; }
+.mood-emoji {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--bg); box-shadow: var(--neu-inset);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; margin: 0 auto 16px;
+}
+.mood-card h3 {
+  font-family: var(--font-display); font-size: 18px; font-weight: 700;
+  color: var(--fg); margin-bottom: 20px;
+}
+
+.mood-options {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px; margin-bottom: 20px;
+}
 .mood-option {
-  display: flex; align-items: center; gap: 12px; padding: 14px 20px;
-  border-radius: var(--radius-sm); border: 2px solid var(--border);
-  cursor: pointer; transition: var(--transition); font-size: 15px; font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg); box-shadow: var(--neu-small);
+  border-radius: var(--radius-base); padding: 12px 14px;
+  cursor: pointer; transition: var(--transition);
+  font-size: 14px; color: var(--muted);
 }
-.mood-option:hover { border-color: var(--primary-light); background: rgba(108,92,231,0.03); }
-.mood-option.selected { border-color: var(--primary); background: rgba(108,92,231,0.06); }
 .mood-option input { display: none; }
-.mood-opt-emoji { font-size: 22px; }
+.mood-option:hover { box-shadow: var(--neu-raised); color: var(--fg); }
+.mood-option.selected { box-shadow: var(--neu-inset); color: var(--accent); font-weight: 600; }
+.mood-opt-emoji { font-size: 18px; }
+
 .mood-result {
-  text-align: center; padding: 32px; border-radius: var(--radius-lg);
-  border: 2px solid; max-width: 480px; margin: 0 auto;
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-container); padding: 32px;
+  text-align: center;
 }
-.mood-result-emoji { font-size: 56px; margin-bottom: 12px; }
-.mood-result p { font-size: 18px; font-weight: 600; line-height: 1.5; }
+.mood-result-emoji {
+  font-size: 40px; margin-bottom: 12px;
+  animation: float 3s ease-in-out infinite;
+}
+.mood-result p { font-size: 15px; font-weight: 600; line-height: 1.6; }

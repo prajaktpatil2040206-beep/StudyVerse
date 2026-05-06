@@ -1,44 +1,152 @@
-.gam-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
-.gam-stat-card { text-align: center; padding: 24px 16px; border-radius: var(--radius); border: 1px solid var(--border); background: white; transition: var(--transition); }
-.gam-stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.streak-card { border-top: 3px solid #E17055; }
-.xp-card { border-top: 3px solid var(--primary); }
-.level-card { border-top: 3px solid var(--accent); }
-.badge-card { border-top: 3px solid var(--secondary); }
-.gam-stat-emoji { font-size: 28px; margin-bottom: 8px; color: var(--primary); }
-.gam-stat-val { font-size: 28px; font-weight: 800; }
-.gam-stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-.xp-progress-section { margin-bottom: 32px; padding: 20px 24px; background: white; border-radius: var(--radius); border: 1px solid var(--border); }
-.xp-progress-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
-.xp-progress-bar { height: 8px; background: var(--surface); border-radius: 4px; overflow: hidden; }
-.xp-progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 4px; transition: width 0.8s ease; }
-.daily-xp-badge { font-size: 12px; background: rgba(108,92,231,0.1); color: var(--primary); padding: 2px 10px; border-radius: 20px; margin-left: 8px; }
+/* ── Gamification — Neumorphic ── */
+
+.gam-stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  margin-bottom: 28px;
+}
+.gam-stat-card {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-container); padding: 24px 20px;
+  text-align: center; transition: var(--transition);
+}
+.gam-stat-card:hover { box-shadow: var(--neu-hover); transform: translateY(-2px); }
+.gam-stat-emoji {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--bg); box-shadow: var(--neu-inset);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 20px;
+  margin: 0 auto 12px;
+}
+.gam-stat-val {
+  font-family: var(--font-display); font-size: 26px; font-weight: 800;
+  color: var(--fg); display: block; margin-bottom: 4px;
+}
+.gam-stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* XP Progress */
+.xp-progress-section {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-base); padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.xp-progress-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 10px; font-size: 13px; font-weight: 600; color: var(--muted);
+}
+.xp-progress-bar {
+  height: 10px; border-radius: 9999px;
+  background: var(--bg); box-shadow: var(--neu-inset-sm);
+  overflow: hidden;
+}
+.xp-progress-fill {
+  height: 100%; border-radius: 9999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  transition: width 0.5s ease-out;
+}
+
+/* Challenges */
 .challenges-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.challenge-card { display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: white; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
-.challenge-card:hover { box-shadow: var(--shadow); }
-.challenge-card.completed { background: rgba(0,184,148,0.04); border-color: var(--secondary); }
-.ch-emoji { font-size: 32px; flex-shrink: 0; }
+.challenge-card {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-base); padding: 20px;
+  display: flex; align-items: center; gap: 14px;
+  transition: var(--transition);
+}
+.challenge-card:hover { box-shadow: var(--neu-hover); transform: translateY(-1px); }
+.challenge-card.completed { box-shadow: var(--neu-inset-sm); }
+.ch-icon {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: var(--bg); box-shadow: var(--neu-inset);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 18px;
+}
+.challenge-card.completed .ch-icon { color: var(--accent-secondary); }
 .ch-info { flex: 1; }
-.ch-info h4 { font-size: 14px; font-weight: 700; }
-.ch-info p { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
-.ch-xp { font-size: 13px; font-weight: 700; color: var(--primary); white-space: nowrap; }
+.ch-info h4 { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 2px; }
+.ch-info p { font-size: 12px; color: var(--muted); }
+.ch-xp {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  color: var(--accent); white-space: nowrap;
+  background: var(--bg); box-shadow: var(--neu-inset-sm);
+  padding: 4px 10px; border-radius: 9999px;
+}
+.daily-xp-badge {
+  margin-left: auto; font-size: 13px; font-weight: 600; color: var(--accent);
+  background: var(--bg); box-shadow: var(--neu-inset-sm);
+  padding: 4px 12px; border-radius: 9999px;
+}
+
+/* Badges */
 .badges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.badge-card { text-align: center; padding: 24px 16px; background: white; border-radius: var(--radius); border: 1px solid var(--border); position: relative; transition: var(--transition); }
-.badge-card.locked { opacity: 0.5; }
-.badge-card.earned { border-color: var(--secondary); }
-.badge-emoji { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 10px; color: white; }
-.badge-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-.badge-card p { font-size: 11px; color: var(--text-secondary); }
-.badge-lock { position: absolute; top: 12px; right: 12px; color: var(--text-light); }
+.badge-card {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-base); padding: 20px;
+  text-align: center; position: relative;
+  transition: var(--transition);
+}
+.badge-card:hover { box-shadow: var(--neu-hover); transform: translateY(-1px); }
+.badge-card.locked { opacity: 0.6; }
+.badge-emoji {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin: 0 auto 10px;
+  box-shadow: var(--neu-small);
+  color: #fff;
+}
+.badge-card h4 { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+.badge-card p { font-size: 12px; color: var(--muted); line-height: 1.4; }
+.badge-lock { position: absolute; top: 12px; right: 12px; color: var(--muted); font-size: 14px; }
+
+/* Leaderboard */
+.leaderboard-card { padding: 0; overflow: hidden; }
 .leaderboard-table { width: 100%; border-collapse: collapse; }
-.leaderboard-table th { text-align: left; padding: 12px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); background: var(--surface); border-bottom: 2px solid var(--border); }
-.leaderboard-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
-.leaderboard-table tr.current-user { background: rgba(108,92,231,0.06); }
-.rank-badge { font-weight: 800; font-size: 16px; }
-.name-cell { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-.lb-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 700; }
-.xp-cell { display: flex; align-items: center; gap: 4px; color: var(--primary); font-weight: 600; }
-.activity-feed { display: flex; flex-direction: column; gap: 8px; }
-.activity-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: white; border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 13px; }
-.activity-time { font-size: 11px; color: var(--text-light); }
-@media (max-width: 768px) { .gam-stats-grid { grid-template-columns: repeat(2, 1fr); } .challenges-grid, .badges-grid { grid-template-columns: 1fr; } }
+.leaderboard-table thead tr {
+  background: var(--bg); box-shadow: var(--neu-inset-sm);
+}
+.leaderboard-table th {
+  padding: 14px 16px; text-align: left;
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.leaderboard-table td { padding: 14px 16px; font-size: 14px; color: var(--fg); }
+.leaderboard-table tbody tr {
+  border-top: 1px solid rgba(163,177,198,0.15);
+  transition: var(--transition);
+}
+.leaderboard-table tbody tr:hover { background: rgba(163,177,198,0.08); }
+.leaderboard-table tbody tr.current-user { background: rgba(108,99,255,0.06); }
+.rank-badge { font-weight: 700; font-size: 13px; }
+.name-cell { display: flex; align-items: center; gap: 10px; }
+.lb-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  box-shadow: var(--neu-small); flex-shrink: 0;
+}
+.xp-cell { display: flex; align-items: center; gap: 4px; color: var(--accent); font-weight: 600; }
+
+/* Activity Feed */
+.activity-feed {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-container); padding: 20px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.activity-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 4px; font-size: 14px; color: var(--fg);
+  border-bottom: 1px solid rgba(163,177,198,0.15);
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-time { font-size: 12px; color: var(--muted); white-space: nowrap; margin-left: 16px; }
+
+@media (max-width: 1024px) { .badges-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .gam-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .challenges-grid { grid-template-columns: 1fr; }
+  .badges-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .gam-stats-grid { grid-template-columns: 1fr 1fr; }
+  .badges-grid { grid-template-columns: 1fr; }
+}

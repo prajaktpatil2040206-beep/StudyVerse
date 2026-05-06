@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { moodQuestions, getMoodMessage } from '../utils/moodWeights';
 import { database, ref, set } from '../services/firebase';
 import { useAuth } from '../context/AuthContext';
+import { FiArrowRight, FiCheck } from 'react-icons/fi';
 import './MoodAnalysis.css';
 
 export default function MoodAnalysis({ onComplete }) {
@@ -34,9 +35,10 @@ export default function MoodAnalysis({ onComplete }) {
 
   if (result) {
     return (
-      <motion.div className="mood-result" style={{ background: result.bg, borderColor: result.color }}
-        initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-        <div className="mood-result-emoji">{result.type === 'high' ? '🔥' : result.type === 'medium' ? '💪' : '🫂'}</div>
+      <motion.div className="mood-result" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+        <div className="mood-result-emoji" style={{ color: result.color }}>
+          <FiCheck size={36} />
+        </div>
         <p style={{ color: result.color }}>{result.message}</p>
       </motion.div>
     );
@@ -53,20 +55,18 @@ export default function MoodAnalysis({ onComplete }) {
       </div>
       <AnimatePresence mode="wait">
         <motion.div key={currentQ} className="mood-card" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
-          <div className="mood-emoji">{q.emoji}</div>
+          <div className="mood-emoji" style={{ fontSize: 22 }}>{q.emoji}</div>
           <h3>{q.question}</h3>
           <div className="mood-options">
             {q.options.map(opt => (
               <label key={opt.value} className={`mood-option ${answers[q.id] === opt.value ? 'selected' : ''}`}>
-                <input type="radio" name={q.id} value={opt.value} checked={answers[q.id] === opt.value}
-                  onChange={() => handleSelect(q.id, opt.value)} />
-                <span className="mood-opt-emoji">{opt.emoji}</span>
+                <input type="radio" name={q.id} value={opt.value} checked={answers[q.id] === opt.value} onChange={() => handleSelect(q.id, opt.value)} />
                 <span>{opt.label}</span>
               </label>
             ))}
           </div>
           <button className="btn btn-primary" onClick={handleNext} disabled={!answers[q.id]}>
-            {currentQ < moodQuestions.length - 1 ? 'Next →' : 'See Result ✨'}
+            {currentQ < moodQuestions.length - 1 ? <>Next <FiArrowRight /></> : <><FiCheck /> See Result</>}
           </button>
         </motion.div>
       </AnimatePresence>

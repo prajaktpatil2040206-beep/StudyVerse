@@ -73,8 +73,7 @@ export default function Register() {
       const existing = await get(ref(database, `users/${uid}/profile`));
       if (existing.exists()) { setError('Email already registered. Please login.'); setLoading(false); return; }
       await set(ref(database, `users/${uid}/profile`), {
-        ...form, profilePic: profilePic || '', createdAt: new Date().toISOString(),
-        uid,
+        ...form, profilePic: profilePic || '', createdAt: new Date().toISOString(), uid,
       });
       await set(ref(database, `users/${uid}/gamification`), { xp: 0, streak: 0, badges: {}, level: 1 });
       setSuccess(true);
@@ -89,9 +88,9 @@ export default function Register() {
     return (
       <div className="auth-page">
         <motion.div className="auth-card success-card" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-          <div className="success-icon">🎉</div>
-          <h2>Registration Successful!</h2>
-          <p>Redirecting to login...</p>
+          <div className="success-icon"><FiCheck size={28} /></div>
+          <h2>Account Created</h2>
+          <p>Redirecting you to sign in...</p>
         </motion.div>
       </div>
     );
@@ -101,7 +100,7 @@ export default function Register() {
     <div className="auth-page">
       <motion.div className="auth-card register-card" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
         <div className="auth-header">
-          <h1>📚 Join StudyVerse</h1>
+          <h1>Join StudyVerse</h1>
           <p>Create your account and start your journey</p>
         </div>
         <div className="step-indicator">
@@ -143,15 +142,15 @@ export default function Register() {
           <div className="auth-actions">
             {step > 0 && <button type="button" className="btn btn-secondary" onClick={handlePrev}>Back</button>}
             {step < 2 ? (
-              <button type="submit" className="btn btn-primary">Next <FiArrowRight /></button>
+              <button type="submit" className="btn btn-primary">Continue <FiArrowRight /></button>
             ) : (
               <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
-                {loading ? 'Creating Account...' : 'Create Account 🚀'}
+                {loading ? 'Creating Account...' : 'Create Account'}
               </button>
             )}
           </div>
         </form>
-        <p className="auth-switch">Already have an account? <Link to="/login">Login here</Link></p>
+        <p className="auth-switch">Already have an account? <Link to="/login">Sign in</Link></p>
       </motion.div>
     </div>
   );

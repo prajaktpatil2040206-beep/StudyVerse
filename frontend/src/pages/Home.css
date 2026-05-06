@@ -1,15 +1,68 @@
-.welcome-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding: 28px 32px; background: linear-gradient(135deg, rgba(108,92,231,0.06), rgba(0,184,148,0.06)); border-radius: var(--radius-lg); border: 1px solid var(--border); }
-.welcome-text h1 { font-size: 32px; font-weight: 800; }
-.welcome-sub { color: var(--text-secondary); font-size: 15px; margin-top: 4px; }
-.quick-stats { display: flex; gap: 20px; }
-.quick-stat { display: flex; align-items: center; gap: 10px; padding: 12px 18px; background: white; border-radius: var(--radius); border: 1px solid var(--border); }
-.qs-icon { font-size: 20px; color: var(--primary); }
-.qs-val { font-size: 20px; font-weight: 800; display: block; }
-.qs-label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+/* ── Home Page — Neumorphic ── */
+
+.welcome-section {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.welcome-text h1 {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 800;
+  color: var(--fg); letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.welcome-sub { color: var(--muted); font-size: 15px; margin-top: 4px; }
+
+.quick-stats {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.quick-stat {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-base); padding: 14px 20px;
+  min-width: 110px; transition: var(--transition);
+}
+.quick-stat:hover { box-shadow: var(--neu-hover); transform: translateY(-1px); }
+.qs-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg); box-shadow: var(--neu-inset);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 16px; flex-shrink: 0;
+}
+.qs-val { display: block; font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--fg); }
+.qs-label { display: block; font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Hero quote */
 .hero-quote-section { margin-bottom: 32px; }
-.hero-quote-card { background: linear-gradient(135deg, var(--primary), #A29BFE); padding: 32px 40px; border-radius: var(--radius-lg); color: white; display: flex; align-items: center; gap: 20px; }
-.quote-icon { font-size: 36px; flex-shrink: 0; }
+.hero-quote-card {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-container);
+  padding: 28px 32px;
+  display: flex; align-items: center; gap: 20px;
+}
+.quote-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: var(--bg); box-shadow: var(--neu-inset);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 20px;
+}
 .quote-rotator { flex: 1; }
-.quote-text { font-size: 18px; font-weight: 500; line-height: 1.6; font-style: italic; color: rgba(255,255,255,0.95); }
-.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
-@media (max-width: 900px) { .home-grid { grid-template-columns: 1fr; } .welcome-section { flex-direction: column; gap: 16px; text-align: center; } .quick-stats { justify-content: center; } }
+.quote-text {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 600;
+  color: var(--fg); line-height: 1.5;
+  font-style: italic;
+}
+
+/* Home grid */
+.home-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .welcome-section { flex-direction: column; align-items: flex-start; }
+  .home-grid { grid-template-columns: 1fr; }
+  .hero-quote-card { flex-direction: column; text-align: center; }
+  .welcome-text h1 { font-size: 24px; }
+}

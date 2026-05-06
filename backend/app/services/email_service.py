@@ -16,13 +16,19 @@ def send_email(to_email: str, subject: str, body: str):
     msg['Subject'] = subject
     msg.attach(MIMEText(body, 'html'))
     try:
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:
+            server.ehlo()
             server.starttls()
+            server.ehlo()
             server.login(EMAIL_ADDRESS, EMAIL_APP_PASSWORD)
             server.send_message(msg)
+        print(f"[Email] Sent OTP to {to_email}")
         return True
+    except smtplib.SMTPAuthenticationError as e:
+        print(f"[Email] Gmail auth failed — check app password: {e}")
+        return False
     except Exception as e:
-        print(f"Email error: {e}")
+        print(f"[Email] Error sending to {to_email}: {e}")
         return False
 
 def send_otp_email(to_email: str):

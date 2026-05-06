@@ -55,8 +55,8 @@ export default function Login() {
     <div className="auth-page">
       <motion.div className="auth-card login-card" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
         <div className="auth-header">
-          <h1>📚 Welcome Back!</h1>
-          <p>Login to continue your learning journey</p>
+          <h1>Welcome Back</h1>
+          <p>Sign in to continue your learning journey</p>
         </div>
         {error && <div className="auth-error">{error}</div>}
         <AnimatePresence mode="wait">
@@ -75,22 +75,22 @@ export default function Login() {
           ) : (
             <motion.form key="otp" onSubmit={handleVerifyOtp} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
               <div className="otp-sent-msg">
-                <span>📧</span> OTP sent to <strong>{email}</strong>
+                OTP sent to <strong>{email}</strong>
               </div>
               <div className="input-group">
-                <label><FiLock /> Enter OTP</label>
+                <label><FiLock /> Verification Code</label>
                 <input className="input-field otp-input" type="text" placeholder="Enter 6-digit OTP" value={otp} onChange={e => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))} maxLength={6} />
               </div>
               <div className="auth-actions">
                 <button type="button" className="btn btn-secondary" onClick={() => { setStep('email'); setOtp(''); setError(''); }}>Back</button>
                 <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
-                  {loading ? 'Verifying...' : 'Login 🚀'}
+                  {loading ? 'Verifying...' : 'Sign In'}
                 </button>
               </div>
             </motion.form>
           )}
         </AnimatePresence>
-        <p className="auth-switch">Don't have an account? <Link to="/register">Sign up here</Link></p>
+        <p className="auth-switch">Don't have an account? <Link to="/register">Create one</Link></p>
       </motion.div>
     </div>
   );

@@ -1,9 +1,24 @@
-.marquee-container { background: linear-gradient(135deg, rgba(108,92,231,0.05), rgba(0,184,148,0.05)); border-radius: var(--radius); padding: 16px 0; overflow: hidden; border: 1px solid var(--border); }
-.marquee-label { font-size: 14px; font-weight: 700; padding: 0 20px; margin-bottom: 12px; }
+/* ── AchievementMarquee — Neumorphic ── */
+
+.marquee-container {
+  background: var(--bg); box-shadow: var(--neu-raised);
+  border-radius: var(--radius-base); padding: 16px 20px;
+  overflow: hidden;
+}
+.marquee-label {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
 .marquee-track { overflow: hidden; position: relative; }
-.marquee-track::before, .marquee-track::after { content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 1; pointer-events: none; }
-.marquee-track::before { left: 0; background: linear-gradient(90deg, rgba(248,249,250,1), transparent); }
-.marquee-track::after { right: 0; background: linear-gradient(270deg, rgba(248,249,250,1), transparent); }
-.marquee-content { display: flex; gap: 16px; animation: marquee 30s linear infinite; width: max-content; }
-.marquee-content:hover { animation-play-state: paused; }
-.marquee-item { background: white; padding: 10px 20px; border-radius: 50px; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); }
+.marquee-content {
+  display: flex; gap: 24px;
+  animation: marquee 30s linear infinite; width: max-content;
+}
+.marquee-item {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg); box-shadow: var(--neu-small);
+  border-radius: 9999px; padding: 6px 16px;
+  font-size: 13px; color: var(--muted); white-space: nowrap;
+  font-weight: 500;
+}

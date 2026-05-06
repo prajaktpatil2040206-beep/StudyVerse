@@ -13,11 +13,11 @@ export default function HeatmapGrid({ activityData = {} }) {
   }
 
   const getColor = (intensity) => {
-    if (intensity === 0) return '#EBEDF0';
-    if (intensity < 2) return '#C6E48B';
-    if (intensity < 4) return '#7BC96F';
-    if (intensity < 6) return '#239A3B';
-    return '#196127';
+    if (intensity === 0) return '#CDD4E0';
+    if (intensity < 2) return '#A8C4E8';
+    if (intensity < 4) return '#7BA7D8';
+    if (intensity < 6) return '#5282C4';
+    return '#6C63FF';
   };
 
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -26,7 +26,7 @@ export default function HeatmapGrid({ activityData = {} }) {
   return (
     <div className="heatmap-container">
       <div className="heatmap-header">
-        <h3>📊 Study Consistency</h3>
+        <h3>Study Consistency</h3>
         <div className="heatmap-legend">
           <span>Less</span>
           {[0, 1, 3, 5, 7].map(v => <div key={v} className="heatmap-legend-cell" style={{ background: getColor(v) }} />)}
@@ -44,7 +44,7 @@ export default function HeatmapGrid({ activityData = {} }) {
           <div className="heatmap-grid">
             {days.map((day, i) => (
               <div key={i} className="heatmap-cell" style={{ background: getColor(day.intensity) }}
-                title={`${day.date}\nStudy: ${day.studyHours || 0}h | Tasks: ${day.tasksCompleted || 0} | Questions: ${day.questionsAnswered || 0}`} />
+                title={`${day.date} — Study: ${day.studyHours || 0}h, Tasks: ${day.tasksCompleted || 0}, Questions: ${day.questionsAnswered || 0}`} />
             ))}
           </div>
         </div>

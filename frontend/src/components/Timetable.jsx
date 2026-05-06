@@ -6,7 +6,7 @@ import './Timetable.css';
 
 const defaultSlots = [
   { time: '06:00 - 07:00', subject: 'Morning Routine', type: 'routine' },
-  { time: '07:00 - 08:00', subject: 'Exercise / Workout', type: 'health' },
+  { time: '07:00 - 08:00', subject: 'Exercise', type: 'health' },
   { time: '08:00 - 09:00', subject: 'Breakfast & Prep', type: 'routine' },
   { time: '09:00 - 10:30', subject: 'Study Block 1', type: 'study' },
   { time: '10:30 - 11:00', subject: 'Break', type: 'break' },
@@ -60,16 +60,15 @@ export default function Timetable({ slots: propSlots }) {
   };
 
   const doneCount = Object.values(statuses).filter(s => s === 'done').length;
-  const totalStudy = slots.filter(s => s.type === 'study').length;
   const wastedCount = Object.values(statuses).filter(s => s === 'skipped').length;
 
   return (
     <div className="timetable-container">
       <div className="timetable-header">
-        <h3>📅 Today's Timetable</h3>
+        <h3>Today's Timetable</h3>
         <div className="timetable-stats">
-          <span className="tt-stat done"><FiCheck size={12} /> {doneCount} done</span>
-          <span className="tt-stat wasted"><FiX size={12} /> {wastedCount} skipped</span>
+          <span className="tt-stat done"><FiCheck size={11} /> {doneCount} done</span>
+          <span className="tt-stat wasted"><FiX size={11} /> {wastedCount} skipped</span>
         </div>
       </div>
       <div className="timetable-table-wrap">
@@ -80,14 +79,14 @@ export default function Timetable({ slots: propSlots }) {
           <tbody>
             {slots.map((slot, i) => (
               <tr key={i} className={getRowClass(slot, i)}>
-                <td className="tt-time"><FiClock size={12} /> {slot.time}</td>
+                <td className="tt-time"><FiClock size={11} /> {slot.time}</td>
                 <td className="tt-subject">{slot.subject}</td>
                 <td><span className={`badge badge-${slot.type === 'study' ? 'primary' : slot.type === 'college' ? 'warning' : 'success'}`}>{slot.type}</span></td>
                 <td className="tt-actions">
                   {slot.type !== 'routine' && slot.type !== 'break' ? (
                     <>
-                      <button className={`tt-btn done ${statuses[i] === 'done' ? 'active' : ''}`} onClick={() => markStatus(i, 'done')} title="Done"><FiCheck /></button>
-                      <button className={`tt-btn skip ${statuses[i] === 'skipped' ? 'active' : ''}`} onClick={() => markStatus(i, 'skipped')} title="Skipped"><FiX /></button>
+                      <button className={`tt-btn done ${statuses[i] === 'done' ? 'active' : ''}`} onClick={() => markStatus(i, 'done')} title="Mark done"><FiCheck size={12} /></button>
+                      <button className={`tt-btn skip ${statuses[i] === 'skipped' ? 'active' : ''}`} onClick={() => markStatus(i, 'skipped')} title="Mark skipped"><FiX size={12} /></button>
                     </>
                   ) : <span className="tt-auto">—</span>}
                 </td>

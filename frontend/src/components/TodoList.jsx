@@ -60,24 +60,26 @@ export default function TodoList() {
     <div className="todo-container">
       <div className="todo-header">
         <div>
-          <h3>📋 Today's Tasks</h3>
-          {todos.length > 0 && <span className="todo-count">{completedCount}/{todos.length} done</span>}
+          <h3>Today's Tasks</h3>
+          {todos.length > 0 && <span className="todo-count">{completedCount}/{todos.length} completed</span>}
         </div>
         <button className="btn btn-primary btn-sm" onClick={() => { setShowAdd(!showAdd); setEditId(null); setForm({ title: '', description: '', deadline: '', priority: 'medium' }); }}>
           {showAdd ? <><FiX /> Cancel</> : <><FiPlus /> Add Task</>}
         </button>
       </div>
+
       {todos.length > 0 && (
         <div className="todo-progress-bar">
           <div className="todo-progress-fill" style={{ width: `${progress}%` }} />
         </div>
       )}
+
       <AnimatePresence>
         {showAdd && (
           <motion.div className="todo-form card" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}>
-            <input className="input-field" placeholder="Task title..." value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} />
-            <input className="input-field" placeholder="Description (optional)" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
-            <div className="todo-form-row">
+            <input className="input-field" placeholder="Task title" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} />
+            <input className="input-field" placeholder="Description (optional)" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} style={{ marginTop: 8 }} />
+            <div className="todo-form-row" style={{ marginTop: 8 }}>
               <input className="input-field" type="time" value={form.deadline} onChange={e => setForm(f => ({ ...f, deadline: e.target.value }))} />
               <select className="input-field" value={form.priority} onChange={e => setForm(f => ({ ...f, priority: e.target.value }))}>
                 <option value="low">Low</option>
@@ -89,10 +91,11 @@ export default function TodoList() {
           </motion.div>
         )}
       </AnimatePresence>
+
       {todos.length === 0 && !showAdd ? (
         <div className="todo-empty">
-          <span className="todo-empty-emoji">🎯</span>
-          <p>No tasks yet! Add tasks to conquer today.</p>
+          <span className="todo-empty-emoji">—</span>
+          <p>No tasks yet. Add a task to start your day.</p>
         </div>
       ) : (
         <div className="todo-list">
@@ -101,16 +104,16 @@ export default function TodoList() {
               <motion.div key={todo.id} className={`todo-item ${todo.completed ? 'done' : ''} priority-${todo.priority}`}
                 layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -50 }}>
                 <button className={`todo-check ${todo.completed ? 'checked' : ''}`} onClick={() => toggleComplete(todo.id, todo.completed)}>
-                  {todo.completed && <FiCheck size={14} />}
+                  {todo.completed && <FiCheck size={12} />}
                 </button>
                 <div className="todo-content">
                   <span className="todo-title">{todo.title}</span>
                   {todo.description && <span className="todo-desc">{todo.description}</span>}
                 </div>
-                {todo.deadline && <span className="todo-deadline"><FiClock size={12} /> {todo.deadline}</span>}
+                {todo.deadline && <span className="todo-deadline"><FiClock size={11} /> {todo.deadline}</span>}
                 <div className="todo-actions">
-                  <button onClick={() => handleEdit(todo)}><FiEdit2 size={14} /></button>
-                  <button onClick={() => handleDelete(todo.id)}><FiTrash2 size={14} /></button>
+                  <button onClick={() => handleEdit(todo)}><FiEdit2 size={13} /></button>
+                  <button onClick={() => handleDelete(todo.id)}><FiTrash2 size={13} /></button>
                 </div>
               </motion.div>
             ))}

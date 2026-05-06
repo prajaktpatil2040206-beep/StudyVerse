@@ -1,4 +1,4 @@
-import { FiHeart, FiGithub, FiMail } from 'react-icons/fi';
+import { FiHeart, FiGithub, FiMail, FiBook } from 'react-icons/fi';
 import './Footer.css';
 
 export default function Footer() {
@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer-inner container">
         <div className="footer-grid">
           <div className="footer-col">
-            <h3 className="footer-brand">📚 StudyVerse</h3>
+            <h3 className="footer-brand">StudyVerse</h3>
             <p className="footer-desc">Your AI-powered companion for academic excellence. Track, learn, grow.</p>
           </div>
           <div className="footer-col">
@@ -31,13 +31,13 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Contact</h4>
             <ul>
-              <li><FiMail size={14} /> support@studyverse.app</li>
-              <li><FiGithub size={14} /> github.com/studyverse</li>
+              <li><FiMail size={13} /> support@studyverse.app</li>
+              <li><FiGithub size={13} /> github.com/studyverse</li>
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>Made with <FiHeart size={14} className="heart-icon" /> by Team StudyVerse &copy; {new Date().getFullYear()}</p>
+          <p>Made with <FiHeart size={13} className="heart-icon" /> by Team StudyVerse &copy; {new Date().getFullYear()}</p>
         </div>
       </div>
     </footer>
