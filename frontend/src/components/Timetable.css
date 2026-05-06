@@ -1,0 +1,24 @@
+.timetable-container { background: white; border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; }
+.timetable-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.timetable-header h3 { font-size: 18px; font-weight: 700; }
+.timetable-stats { display: flex; gap: 12px; }
+.tt-stat { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; }
+.tt-stat.done { background: rgba(0,184,148,0.1); color: var(--secondary); }
+.tt-stat.wasted { background: rgba(225,112,85,0.1); color: var(--danger); }
+.timetable-table-wrap { overflow-x: auto; }
+.timetable-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.timetable-table th { text-align: left; padding: 10px 12px; background: var(--surface); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); border-bottom: 2px solid var(--border); }
+.timetable-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.tt-time { font-weight: 600; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.tt-subject { font-weight: 600; }
+tr.status-done { background: rgba(0,184,148,0.05); }
+tr.status-done .tt-subject { color: var(--secondary); }
+tr.status-skipped { background: rgba(225,112,85,0.05); }
+tr.status-skipped .tt-subject { text-decoration: line-through; color: var(--danger); opacity: 0.6; }
+tr.status-current { background: rgba(108,92,231,0.06); border-left: 3px solid var(--primary); }
+tr.status-missed { background: rgba(253,203,110,0.08); }
+.tt-actions { display: flex; gap: 4px; }
+.tt-btn { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--border); background: white; display: flex; align-items: center; justify-content: center; transition: var(--transition); font-size: 13px; }
+.tt-btn.done:hover, .tt-btn.done.active { background: var(--secondary); color: white; border-color: var(--secondary); }
+.tt-btn.skip:hover, .tt-btn.skip.active { background: var(--danger); color: white; border-color: var(--danger); }
+.tt-auto { color: var(--text-light); }

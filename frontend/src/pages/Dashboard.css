@@ -1,0 +1,25 @@
+.dash-top-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 32px; }
+.profile-card { padding: 28px; }
+.profile-header { display: flex; gap: 20px; align-items: center; margin-bottom: 16px; }
+.profile-avatar-lg { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: 800; overflow: hidden; flex-shrink: 0; }
+.profile-avatar-lg img { width: 100%; height: 100%; object-fit: cover; }
+.profile-info h2 { font-size: 24px; font-weight: 800; }
+.profile-info p { color: var(--text-secondary); font-size: 14px; }
+.profile-meta { font-size: 13px !important; margin-top: 4px; }
+.profile-actions { display: flex; gap: 8px; }
+.stats-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mini-stat { display: flex; align-items: center; gap: 10px; padding: 16px; background: white; border-radius: var(--radius); border: 1px solid var(--border); }
+.ms-icon { font-size: 22px; }
+.ms-val { font-size: 20px; font-weight: 800; display: block; }
+.ms-label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.3px; }
+.warnings-section { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+.warning-card { display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; flex: 1; min-width: 200px; }
+.warning-card.warning { background: rgba(253,203,110,0.15); color: #E17055; }
+.warning-card.info { background: rgba(0,184,148,0.1); color: var(--secondary); }
+.charts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+.chart-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+.suggestions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.suggestion-card { display: flex; align-items: flex-start; gap: 12px; padding: 18px 20px; background: linear-gradient(135deg, rgba(108,92,231,0.04), rgba(0,184,148,0.04)); border-radius: var(--radius); border: 1px solid var(--border); }
+.suggestion-emoji { font-size: 24px; flex-shrink: 0; }
+.suggestion-card p { font-size: 14px; line-height: 1.5; color: var(--text); }
+@media (max-width: 900px) { .dash-top-grid { grid-template-columns: 1fr; } .charts-grid { grid-template-columns: 1fr; } .suggestions-grid { grid-template-columns: 1fr; } }
