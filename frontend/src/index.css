@@ -39,6 +39,27 @@
   --font-body: 'DM Sans', sans-serif;
 }
 
+/* ── Dark Theme ── */
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --fg: #e0e0e0;
+  --muted: #9ca3af;
+  --accent: #7c73ff;
+  --accent-light: #9b94ff;
+  --accent-secondary: #4fd1c5;
+  --placeholder: #6b7280;
+  --shadow-light: rgba(255,255,255,0.05);
+  --shadow-dark: rgba(0,0,0,0.4);
+  --shadow-light-strong: rgba(255,255,255,0.07);
+  --shadow-dark-strong: rgba(0,0,0,0.5);
+  --neu-raised: 6px 6px 14px rgba(0,0,0,0.4), -6px -6px 14px rgba(255,255,255,0.05);
+  --neu-hover: 8px 8px 18px rgba(0,0,0,0.5), -8px -8px 18px rgba(255,255,255,0.07);
+  --neu-small: 4px 4px 8px rgba(0,0,0,0.4), -4px -4px 8px rgba(255,255,255,0.05);
+  --neu-inset: inset 4px 4px 8px rgba(0,0,0,0.4), inset -4px -4px 8px rgba(255,255,255,0.05);
+  --neu-inset-deep: inset 6px 6px 14px rgba(0,0,0,0.5), inset -6px -6px 14px rgba(255,255,255,0.07);
+  --neu-inset-sm: inset 2px 2px 5px rgba(0,0,0,0.4), inset -2px -2px 5px rgba(255,255,255,0.05);
+}
+
 /* ── Reset ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 

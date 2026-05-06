@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiHome, FiAward, FiCpu, FiBarChart2, FiLogOut, FiMenu, FiX, FiBell } from 'react-icons/fi';
+import { useTheme } from '../context/ThemeContext';
+import { FiHome, FiAward, FiCpu, FiBarChart2, FiLogOut, FiMenu, FiX, FiBell, FiMoon, FiSun } from 'react-icons/fi';
 import './Navbar.css';
 
 const navLinks = [
@@ -13,6 +14,7 @@ const navLinks = [
 
 export default function Navbar() {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -39,6 +41,9 @@ export default function Navbar() {
           ))}
         </div>
         <div className="navbar-actions">
+          <button className="btn-icon nav-theme" onClick={toggleTheme} title={theme === 'dark' ? 'Light Mode' : 'Dark Mode'}>
+            {theme === 'dark' ? <FiSun size={18} /> : <FiMoon size={18} />}
+          </button>
           <button className="btn-icon nav-bell"><FiBell size={18} /></button>
           <div className="nav-user">
             <div className="nav-avatar">

@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { database, ref, set as fbSet, push } from '../services/firebase';
 import { api } from '../services/api';
 import { motion } from 'framer-motion';
-import { FiCalendar, FiTarget, FiMessageCircle, FiFileText, FiSend, FiMic, FiDownload, FiRefreshCw, FiCheck } from 'react-icons/fi';
+import { FiCalendar, FiTarget, FiMessageCircle, FiFileText, FiSend, FiMic, FiDownload, FiRefreshCw, FiCheck, FiEdit3 } from 'react-icons/fi';
 import { generateTimetablePDF, generateAssessmentPDF } from '../utils/pdfGenerator';
 import Footer from '../components/Footer';
 import './Mentor.css';
@@ -45,7 +45,9 @@ export default function Mentor() {
 }
 
 function TimetableGen({ user }) {
+  const [mode, setMode] = useState('form'); // 'form' or 'prompt'
   const [form, setForm] = useState({});
+  const [promptText, setPromptText] = useState('');
   const [timetable, setTimetable] = useState(null);
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
@@ -76,40 +78,65 @@ function TimetableGen({ user }) {
     { time: '20:00 - 21:30', subject: 'Evening Study', type: 'study' },
     { time: '21:30 - 22:00', subject: 'Wind Down', type: 'routine' },
   ]};
+
   const generate = async () => {
     setLoading(true);
-    try { const res = await api.generateTimetable({ ...form, userId: user.uid }); setTimetable(res.timetable || res); }
-    catch { setTimetable(fallback); }
+    try {
+      if (mode === 'prompt' && promptText.trim()) {
+        const res = await api.generateTimetableFromPrompt({ prompt: promptText, userId: user.uid });
+        setTimetable(res.timetable || res);
+      } else {
+        const res = await api.generateTimetable({ ...form, userId: user.uid });
+        setTimetable(res.timetable || res);
+      }
+    } catch { setTimetable(fallback); }
     setLoading(false);
   };
+
   const approve = async () => {
     const today = new Date().toISOString().split('T')[0];
     if (timetable?.daily) await fbSet(ref(database, `users/${user.uid}/timetable/daily/${today}`), { slots: timetable.daily, statuses: {} });
     setApproved(true);
   };
-  const downloadPDF = () => {
-    generateTimetablePDF(timetable, form);
-  };
+
+  const downloadPDF = () => { generateTimetablePDF(timetable, form); };
+
   if (!timetable) return (
     <div className="card">
-      <h3>Generate Smart Timetable</h3>
-      <p className="form-subtitle">AI creates the optimal schedule based on your preferences</p>
-      <div className="mentor-form-grid">
-        {Object.entries(opts).map(([k, v]) => (
-          <div className="input-group" key={k}>
-            <label>{k.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}</label>
-            <select className="input-field" value={form[k] || ''} onChange={e => setForm(f => ({ ...f, [k]: e.target.value }))}>
-              <option value="">Select...</option>
-              {v.map(o => <option key={o} value={o}>{o}</option>)}
-            </select>
-          </div>
-        ))}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+        <h3>Generate Smart Timetable</h3>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button className={`btn btn-sm ${mode === 'form' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setMode('form')}><FiCalendar /> Preferences</button>
+          <button className={`btn btn-sm ${mode === 'prompt' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setMode('prompt')}><FiEdit3 /> Custom Prompt</button>
+        </div>
       </div>
+      {mode === 'form' ? (
+        <>
+          <p className="form-subtitle">AI creates the optimal schedule based on your preferences</p>
+          <div className="mentor-form-grid">
+            {Object.entries(opts).map(([k, v]) => (
+              <div className="input-group" key={k}>
+                <label>{k.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}</label>
+                <select className="input-field" value={form[k] || ''} onChange={e => setForm(f => ({ ...f, [k]: e.target.value }))}>
+                  <option value="">Select...</option>
+                  {v.map(o => <option key={o} value={o}>{o}</option>)}
+                </select>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="form-subtitle">Describe your ideal day and the AI will generate a custom timetable</p>
+          <textarea className="input-field" rows={5} placeholder="Example: I wake up at 7 AM, have college from 9 to 1 PM. I want to study Math and DSA in the evening. I need 2 hours of free time and want to sleep by 11 PM..." value={promptText} onChange={e => setPromptText(e.target.value)} style={{ marginTop: 12 }} />
+        </>
+      )}
       <button className="btn btn-primary btn-lg" onClick={generate} disabled={loading} style={{ marginTop: 20, width: '100%' }}>
-        {loading ? 'Generating...' : 'Generate Timetable'}
+        {loading ? 'AI is generating...' : 'Generate Timetable'}
       </button>
     </div>
   );
+
   return (
     <div id="tt-result">
       <div className="tt-result-header">
@@ -238,42 +265,99 @@ function Assessment({ user }) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
+
+  // Generate all 10 questions at once
   const gen = async () => {
     setLoading(true);
-    try { const r = await api.generateQuestions({ topic, userId: user.uid }); setQuestions(r.questions || defaultQs(topic)); }
-    catch { setQuestions(defaultQs(topic)); }
-    setStep('quiz'); setLoading(false);
-  };
-  const defaultQs = (t) => [
-    { question: `Explain ${t}`, points: 10 }, { question: `Key components of ${t}?`, points: 10 },
-    { question: `Practical example of ${t}`, points: 10 }, { question: `Challenges in ${t}?`, points: 10 },
-    { question: `How ${t} relates to other areas?`, points: 10 },
-  ];
-  const submit = async () => {
-    const q = questions[currentQ]; setLoading(true);
-    let fb = { score: 7, feedback: 'Good answer. Consider elaborating further.' };
-    try { const r = await api.evaluateAnswer({ question: q.question, answer: answers[currentQ] || '', userId: user.uid }); fb = r; } catch {}
-    setResults(p => [...p, { question: q.question, answer: answers[currentQ], ...fb }]);
-    setTotalScore(p => p + (fb.score || 0));
-    if (currentQ < questions.length - 1) setCurrentQ(c => c + 1); else setStep('results');
+    try {
+      const r = await api.generateQuestions({ topic, userId: user.uid });
+      setQuestions(r.questions || defaultQs(topic));
+    } catch { setQuestions(defaultQs(topic)); }
+    setStep('quiz'); setCurrentQ(0); setAnswers({}); setResults([]); setTotalScore(0);
     setLoading(false);
   };
-  const dlPDF = () => {
-    generateAssessmentPDF(topic, results, totalScore, questions.length * 10);
+
+  const defaultQs = (t) => Array.from({ length: 10 }, (_, i) => ({
+    question: [
+      `Define ${t} and explain its significance.`, `What are the key principles of ${t}?`,
+      `List the main components of ${t}.`, `Give a real-world example of ${t}.`,
+      `What advantages does ${t} offer?`, `What challenges exist in ${t}?`,
+      `Compare two approaches in ${t}.`, `How does ${t} relate to other fields?`,
+      `Explain a misconception about ${t}.`, `What is the future impact of ${t}?`,
+    ][i], points: 10,
+  }));
+
+  // Submit current answer and move to next
+  const submitAnswer = () => {
+    if (currentQ < questions.length - 1) {
+      setCurrentQ(c => c + 1);
+    } else {
+      finishQuiz();
+    }
   };
+
+  // After all answered, batch evaluate with AI
+  const finishQuiz = async () => {
+    setLoading(true);
+    setStep('evaluating');
+    const qaPairs = questions.map((q, i) => ({
+      question: q.question,
+      answer: answers[i] || '',
+    }));
+    try {
+      const res = await api.evaluateBatch({ questionsAndAnswers: qaPairs, userId: user.uid });
+      const evals = res.results || qaPairs.map((_, i) => ({ score: Math.min(10, Math.max(1, (answers[i] || '').split(' ').length / 3)), feedback: 'Evaluated.' }));
+      const fullResults = questions.map((q, i) => ({
+        question: q.question, answer: answers[i] || '', score: evals[i]?.score || 0, feedback: evals[i]?.feedback || '',
+      }));
+      const total = fullResults.reduce((s, r) => s + (r.score || 0), 0);
+      setResults(fullResults);
+      setTotalScore(total);
+      // Save to Firebase
+      const assessRef = push(ref(database, `users/${user.uid}/assessments`));
+      await fbSet(assessRef, { topic, results: fullResults, totalScore: total, maxScore: questions.length * 10, scorePercent: Math.round((total / (questions.length * 10)) * 100), date: new Date().toISOString() });
+      // Update activity
+      const today = new Date().toISOString().split('T')[0];
+      const { get } = await import('../services/firebase');
+      const actSnap = await get(ref(database, `users/${user.uid}/activity/${today}`));
+      const actData = actSnap.exists() ? actSnap.val() : {};
+      await fbSet(ref(database, `users/${user.uid}/activity/${today}`), { ...actData, avgScore: Math.round((total / (questions.length * 10)) * 100), questionsAnswered: (actData.questionsAnswered || 0) + questions.length });
+    } catch {
+      const fallbackResults = questions.map((q, i) => ({
+        question: q.question, answer: answers[i] || '', score: Math.min(10, Math.max(1, Math.floor((answers[i] || '').split(' ').length / 3))), feedback: 'Could not connect to AI. Basic evaluation applied.',
+      }));
+      const total = fallbackResults.reduce((s, r) => s + r.score, 0);
+      setResults(fallbackResults);
+      setTotalScore(total);
+    }
+    setStep('results');
+    setLoading(false);
+  };
+
+  const dlPDF = () => { generateAssessmentPDF(topic, results, totalScore, questions.length * 10); };
+
   if (step === 'upload') return (
     <div className="card">
       <h3>AI Assessment</h3>
-      <p className="form-subtitle">Enter a topic and the AI will generate a personalised quiz</p>
+      <p className="form-subtitle">Enter a topic and the AI will generate 10 personalised questions</p>
       <div className="input-group" style={{ marginTop: 16 }}>
         <label>Topic</label>
         <input className="input-field" placeholder="e.g. Java OOP, React Hooks, Networking..." value={topic} onChange={e => setTopic(e.target.value)} />
       </div>
       <button className="btn btn-primary btn-lg" style={{ marginTop: 20, width: '100%' }} onClick={gen} disabled={loading || !topic.trim()}>
-        {loading ? 'Generating...' : 'Start Assessment'}
+        {loading ? 'AI is generating 10 questions...' : 'Start Assessment'}
       </button>
     </div>
   );
+
+  if (step === 'evaluating') return (
+    <div className="card" style={{ textAlign: 'center', padding: 60 }}>
+      <div className="loading-spinner" />
+      <h3 style={{ marginTop: 20 }}>AI is evaluating your answers...</h3>
+      <p className="form-subtitle">The AI model is reviewing all {questions.length} answers and generating detailed feedback.</p>
+    </div>
+  );
+
   if (step === 'quiz') return (
     <div>
       <div className="quiz-header">
@@ -284,11 +368,12 @@ function Assessment({ user }) {
         <h3>{questions[currentQ]?.question}</h3>
         <textarea className="input-field" rows={4} placeholder="Write your answer here..." value={answers[currentQ] || ''} onChange={e => setAnswers(a => ({ ...a, [currentQ]: e.target.value }))} />
       </div>
-      <button className="btn btn-primary btn-lg" style={{ marginTop: 16, width: '100%' }} onClick={submit} disabled={loading || !answers[currentQ]?.trim()}>
-        {loading ? 'Evaluating...' : currentQ < questions.length - 1 ? 'Submit & Next' : 'Finish'}
+      <button className="btn btn-primary btn-lg" style={{ marginTop: 16, width: '100%' }} onClick={submitAnswer} disabled={!answers[currentQ]?.trim()}>
+        {currentQ < questions.length - 1 ? 'Next Question' : 'Submit All for AI Evaluation'}
       </button>
     </div>
   );
+
   return (
     <div>
       <div className="results-header">

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { database, ref, onValue, update } from '../services/firebase';
 import { useAuth } from '../context/AuthContext';
-import { FiCheck, FiX, FiClock } from 'react-icons/fi';
+import { generateDailyTimetablePDF } from '../utils/pdfGenerator';
+import { FiCheck, FiX, FiClock, FiDownload } from 'react-icons/fi';
 import './Timetable.css';
 
 const defaultSlots = [
@@ -62,6 +63,10 @@ export default function Timetable({ slots: propSlots }) {
   const doneCount = Object.values(statuses).filter(s => s === 'done').length;
   const wastedCount = Object.values(statuses).filter(s => s === 'skipped').length;
 
+  const handleDownloadPDF = () => {
+    generateDailyTimetablePDF(slots, statuses);
+  };
+
   return (
     <div className="timetable-container">
       <div className="timetable-header">
@@ -69,6 +74,9 @@ export default function Timetable({ slots: propSlots }) {
         <div className="timetable-stats">
           <span className="tt-stat done"><FiCheck size={11} /> {doneCount} done</span>
           <span className="tt-stat wasted"><FiX size={11} /> {wastedCount} skipped</span>
+          <button className="btn btn-secondary btn-sm" onClick={handleDownloadPDF} title="Download PDF">
+            <FiDownload size={13} /> PDF
+          </button>
         </div>
       </div>
       <div className="timetable-table-wrap">

@@ -25,15 +25,13 @@ export const api = {
   verifyOtp: (email, otp) => request('/auth/verify-otp', { method: 'POST', body: { email, otp } }),
   generateTimetable: (data) => request('/ai/generate-timetable', { method: 'POST', body: data }),
   rebuildTimetable: (data) => request('/ai/rebuild-timetable', { method: 'POST', body: data }),
+  generateTimetableFromPrompt: (data) => request('/ai/generate-timetable-prompt', { method: 'POST', body: data }),
   setGoal: (data) => request('/ai/set-goal', { method: 'POST', body: data }),
   chat: (data) => request('/ai/chat', { method: 'POST', body: data }),
-  generateQuestions: (data) => {
-    const formData = new FormData();
-    if (data.file) formData.append('file', data.file);
-    if (data.topic) formData.append('topic', data.topic);
-    if (data.userId) formData.append('user_id', data.userId);
-    return request('/ai/generate-questions', { method: 'POST', body: formData });
-  },
+  generateQuestions: (data) => request('/ai/generate-questions', { method: 'POST', body: data }),
   evaluateAnswer: (data) => request('/ai/evaluate-answer', { method: 'POST', body: data }),
+  evaluateBatch: (data) => request('/ai/evaluate-batch', { method: 'POST', body: data }),
+  dailyTest: (data) => request('/ai/daily-test', { method: 'POST', body: data }),
+  dashboardSuggestions: (data) => request('/ai/dashboard-suggestions', { method: 'POST', body: data }),
   sendNotification: (data) => request('/notifications/send', { method: 'POST', body: data }),
 };
