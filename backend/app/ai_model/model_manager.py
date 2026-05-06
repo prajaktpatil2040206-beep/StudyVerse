@@ -100,13 +100,20 @@ class ModelManager:
             self._tokenizer = AutoTokenizer.from_pretrained(
                 source, trust_remote_code=True
             )
+            
+            # Load model with memory optimization for CPU
             self._model = AutoModelForCausalLM.from_pretrained(
                 source,
                 torch_dtype=dtype,
                 trust_remote_code=True,
-            ).to(self._device)
-
+                low_cpu_mem_usage=True,  # Enable memory-efficient loading
+                device_map=None,  # Don't use device_map on CPU
+            )
+            
+            # Move to device after loading
+            self._model = self._model.to(self._device)
             self._model.eval()
+            
             self._ready = True
             self._loading = False
             print("[PowerGrid AI] Model loaded and ready!")

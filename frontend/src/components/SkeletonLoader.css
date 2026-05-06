@@ -1,0 +1,286 @@
+/* Skeleton loading animations and styles */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, #2a2a3e 25%, #35354a 50%, #2a2a3e 75%);
+  background-size: 1000px 100%;
+}
+
+.skeleton-card {
+  background: var(--bg);
+  border-radius: var(--radius-container);
+  box-shadow: var(--neu-raised);
+  padding: 28px;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  margin-bottom: 16px;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 90%;
+  margin-bottom: 12px;
+}
+
+.skeleton-text-short {
+  height: 16px;
+  width: 60%;
+}
+
+.skeleton-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-table-row {
+  display: flex;
+  gap: 16px;
+}
+
+.skeleton-table-cell {
+  height: 40px;
+  flex: 1;
+}
+
+.skeleton-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.skeleton-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-list-item {
+  padding: 16px;
+  background: var(--bg);
+  border-radius: var(--radius-base);
+  box-shadow: var(--neu-small);
+}
+
+.skeleton-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  background: var(--bg);
+  border-radius: var(--radius-container);
+  box-shadow: var(--neu-raised);
+}
+
+.skeleton-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skeleton-number {
+  height: 32px;
+  width: 80px;
+}
+
+.skeleton-label {
+  height: 14px;
+  width: 100px;
+}
+
+.skeleton-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 200px;
+  padding: 20px;
+  background: var(--bg);
+  border-radius: var(--radius-container);
+  box-shadow: var(--neu-raised);
+}
+
+.skeleton-chart-bar {
+  flex: 1;
+  border-radius: 8px 8px 0 0;
+}
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+  .skeleton-card {
+    padding: 20px;
+  }
+
+  .skeleton-title {
+    height: 20px;
+    width: 80%;
+    margin-bottom: 14px;
+  }
+
+  .skeleton-text {
+    height: 14px;
+    width: 95%;
+    margin-bottom: 10px;
+  }
+
+  .skeleton-text-short {
+    height: 14px;
+    width: 70%;
+  }
+
+  .skeleton-table-row {
+    gap: 12px;
+  }
+
+  .skeleton-table-cell {
+    height: 36px;
+  }
+
+  .skeleton-profile {
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .skeleton-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .skeleton-list {
+    gap: 12px;
+  }
+
+  .skeleton-list-item {
+    padding: 14px;
+  }
+
+  .skeleton-metric {
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .skeleton-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .skeleton-number {
+    height: 28px;
+    width: 70px;
+  }
+
+  .skeleton-label {
+    height: 12px;
+    width: 90px;
+  }
+
+  .skeleton-chart {
+    height: 180px;
+    padding: 16px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton-card {
+    padding: 16px;
+  }
+
+  .skeleton-title {
+    height: 18px;
+    width: 85%;
+    margin-bottom: 12px;
+  }
+
+  .skeleton-text {
+    height: 12px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .skeleton-text-short {
+    height: 12px;
+    width: 75%;
+  }
+
+  .skeleton-table {
+    gap: 10px;
+  }
+
+  .skeleton-table-row {
+    gap: 10px;
+  }
+
+  .skeleton-table-cell {
+    height: 32px;
+  }
+
+  .skeleton-profile {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .skeleton-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .skeleton-list {
+    gap: 10px;
+  }
+
+  .skeleton-list-item {
+    padding: 12px;
+  }
+
+  .skeleton-metric {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .skeleton-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .skeleton-number {
+    height: 24px;
+    width: 60px;
+  }
+
+  .skeleton-label {
+    height: 10px;
+    width: 80px;
+  }
+
+  .skeleton-chart {
+    height: 150px;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .skeleton-chart-bar {
+    border-radius: 6px 6px 0 0;
+  }
+}

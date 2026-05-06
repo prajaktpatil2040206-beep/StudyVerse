@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { FiHome, FiAward, FiCpu, FiBarChart2, FiLogOut, FiMenu, FiX, FiBell, FiMoon, FiSun } from 'react-icons/fi';
+import { FiHome, FiAward, FiCpu, FiBarChart2, FiLogOut, FiMenu, FiX, FiBell, FiMoon, FiSun, FiLayout } from 'react-icons/fi';
+import NotificationPanel from './NotificationPanel';
 import './Navbar.css';
 
 const navLinks = [
@@ -10,6 +11,7 @@ const navLinks = [
   { path: '/gamification', label: 'Gamification', icon: <FiAward /> },
   { path: '/mentor', label: 'Mentor AI', icon: <FiCpu /> },
   { path: '/dashboard', label: 'Dashboard', icon: <FiBarChart2 /> },
+  { path: '/kanban', label: 'Kanban', icon: <FiLayout /> },
 ];
 
 export default function Navbar() {
@@ -17,6 +19,28 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  // Load unread notification count
+  useEffect(() => {
+    if (user?.uid) {
+      loadUnreadCount();
+      // Poll every 30 seconds
+      const interval = setInterval(loadUnreadCount, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [user]);
+
+  const loadUnreadCount = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/notifications/user/${user.uid}?unread_only=true`);
+      const data = await response.json();
+      setUnreadCount(data.unread_count || 0);
+    } catch (error) {
+      console.error('Failed to load unread count:', error);
+    }
+  };
 
   if (!user) return null;
 
@@ -44,7 +68,10 @@ export default function Navbar() {
           <button className="btn-icon nav-theme" onClick={toggleTheme} title={theme === 'dark' ? 'Light Mode' : 'Dark Mode'}>
             {theme === 'dark' ? <FiSun size={18} /> : <FiMoon size={18} />}
           </button>
-          <button className="btn-icon nav-bell"><FiBell size={18} /></button>
+          <button className="btn-icon nav-bell" onClick={() => setNotificationOpen(true)}>
+            <FiBell size={18} />
+            {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
+          </button>
           <div className="nav-user">
             <div className="nav-avatar">
               {user.profilePic ? (
@@ -61,6 +88,13 @@ export default function Navbar() {
           </button>
         </div>
       </div>
+      <NotificationPanel 
+        isOpen={notificationOpen} 
+        onClose={() => {
+          setNotificationOpen(false);
+          loadUnreadCount(); // Refresh count when panel closes
+        }} 
+      />
     </nav>
   );
 }

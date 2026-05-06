@@ -53,3 +53,83 @@
   animation: float 3s ease-in-out infinite;
 }
 .mood-result p { font-size: 15px; font-weight: 600; line-height: 1.6; }
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+  .mood-analysis {
+    padding: 24px 20px;
+  }
+
+  .mood-card h3 {
+    font-size: 16px;
+  }
+
+  .mood-options {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+  }
+
+  .mood-option {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .mood-opt-emoji {
+    font-size: 16px;
+  }
+
+  .mood-result {
+    padding: 24px 20px;
+  }
+
+  .mood-result-emoji {
+    font-size: 36px;
+  }
+
+  .mood-result p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mood-analysis {
+    padding: 20px 16px;
+  }
+
+  .mood-emoji {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .mood-card h3 {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .mood-options {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .mood-option {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .mood-opt-emoji {
+    font-size: 14px;
+  }
+
+  .mood-result {
+    padding: 20px 16px;
+  }
+
+  .mood-result-emoji {
+    font-size: 32px;
+  }
+
+  .mood-result p {
+    font-size: 13px;
+  }
+}

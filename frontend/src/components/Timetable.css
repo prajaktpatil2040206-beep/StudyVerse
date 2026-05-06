@@ -61,3 +61,132 @@
 .tt-btn.done.active { background: var(--accent-secondary); color: #fff; box-shadow: var(--neu-small); }
 .tt-btn.skip.active { background: #E17055; color: #fff; box-shadow: var(--neu-small); }
 .tt-auto { color: var(--placeholder); font-size: 12px; }
+.status-expired { opacity: 0.5; background: rgba(225,112,85,0.05) !important; }
+.status-expired .tt-subject { text-decoration: line-through; color: var(--muted); }
+.expired-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; color: #e17055; background: rgba(225,112,85,0.12); padding: 2px 6px; border-radius: 10px; margin-left: 8px; }
+.tt-expired-label { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #e17055; font-weight: 600; }
+.tt-stat.expired { color: #e17055; }
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+  .timetable-container {
+    padding: 20px;
+  }
+
+  .timetable-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .timetable-header h3 {
+    font-size: 16px;
+  }
+
+  .timetable-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tt-stat {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .timetable-table th {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .timetable-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .tt-time {
+    font-size: 12px;
+  }
+
+  .tt-subject {
+    font-size: 12px;
+  }
+
+  .tt-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .expired-badge {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timetable-container {
+    padding: 16px;
+    overflow-x: auto;
+  }
+
+  .timetable-header h3 {
+    font-size: 15px;
+  }
+
+  .timetable-stats {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tt-stat {
+    font-size: 10px;
+    padding: 3px 7px;
+  }
+
+  .timetable-table {
+    min-width: 500px;
+  }
+
+  .timetable-table th {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .timetable-table td {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .tt-time {
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .tt-subject {
+    font-size: 11px;
+  }
+
+  .tt-actions {
+    gap: 4px;
+  }
+
+  .tt-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .tt-auto {
+    font-size: 11px;
+  }
+
+  .expired-badge {
+    font-size: 8px;
+    padding: 1px 4px;
+    margin-left: 4px;
+  }
+
+  .tt-expired-label {
+    font-size: 10px;
+  }
+}

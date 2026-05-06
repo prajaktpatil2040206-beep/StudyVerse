@@ -175,4 +175,66 @@
   .mentor-form-grid { grid-template-columns: 1fr; }
   .chat-container { height: 480px; }
   .chat-bubble { max-width: 85%; }
+  .mentor-tabs { gap: 6px; }
+  .mentor-tab { padding: 10px 16px; font-size: 13px; }
+  .tt-result-actions { flex-direction: column; width: 100%; }
+  .tt-result-actions .btn { width: 100%; }
+  .timetable-table { font-size: 13px; }
+  .timetable-table th, .timetable-table td { padding: 10px 12px; }
+  .rebuild-section { flex-direction: column; }
+  .rebuild-section .input-field { width: 100%; }
+  .count-selector { justify-content: center; }
 }
+
+@media (max-width: 480px) {
+  .mentor-tabs { flex-direction: column; }
+  .mentor-tab { width: 100%; justify-content: center; }
+  .chat-container { height: 400px; }
+  .chat-messages { padding: 16px; }
+  .chat-bubble { max-width: 90%; font-size: 13px; padding: 12px 14px; }
+  .chat-avatar { width: 32px; height: 32px; font-size: 12px; }
+  .chat-input-bar { padding: 12px 16px; }
+  .chat-send-btn, .chat-voice-btn { width: 40px; height: 40px; }
+  .timetable-table { font-size: 12px; overflow-x: auto; display: block; }
+  .timetable-table thead, .timetable-table tbody, .timetable-table tr { display: block; }
+  .timetable-table th, .timetable-table td { padding: 8px; }
+  .goal-card { padding: 16px; }
+  .count-btn { padding: 12px 16px; }
+  .count-num { font-size: 20px; }
+  .phase-item { padding: 10px; }
+  .quiz-card { padding: 18px; }
+}
+
+/* Subject checkboxes */
+.subject-checkboxes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.subject-chip { padding: 6px 14px; border-radius: 20px; border: 2px solid var(--border); background: var(--bg); cursor: pointer; font-size: 12px; font-weight: 500; color: var(--muted); box-shadow: var(--neu-small); transition: all 0.2s; }
+.subject-chip.selected { border-color: var(--accent); background: rgba(108,99,255,0.12); color: var(--accent); font-weight: 600; }
+.subject-chip:hover { border-color: var(--accent); }
+.selected-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip-selected { display: flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; }
+.chip-selected button { background: none; border: none; color: #fff; cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
+.tt-divider { text-align: center; position: relative; margin: 20px 0 8px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.tt-divider::before, .tt-divider::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: var(--border); }
+.tt-divider::before { left: 0; } .tt-divider::after { right: 0; }
+
+/* Goal plan detail */
+.goal-header { display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; margin-bottom: 10px; }
+.goal-timeline { font-size: 12px; color: var(--accent); font-weight: 600; background: rgba(108,99,255,0.1); padding: 2px 10px; border-radius: 10px; }
+.goal-plan-detail { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; }
+.plan-overview { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.plan-phases h5, .plan-milestones h5, .plan-routine h5 { font-size: 13px; color: var(--accent); margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.phase-item { margin-bottom: 12px; padding: 12px; border-radius: 10px; background: rgba(108,99,255,0.04); border-left: 3px solid var(--accent); }
+.phase-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.phase-num { font-size: 10px; font-weight: 700; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 10px; }
+.phase-dur { font-size: 11px; color: var(--muted); margin-left: auto; }
+.phase-item ul { margin: 0; padding-left: 16px; } .phase-item li { font-size: 13px; color: var(--fg); margin-bottom: 4px; line-height: 1.5; }
+.milestone-item { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--fg); }
+.milestone-week { font-size: 11px; background: #00B894; color: #fff; padding: 2px 8px; border-radius: 10px; white-space: nowrap; font-weight: 600; }
+.plan-routine p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* Count selector */
+.count-selector { display: flex; gap: 12px; flex-wrap: wrap; }
+.count-btn { display: flex; flex-direction: column; align-items: center; padding: 16px 20px; border-radius: 12px; border: 2px solid var(--border); background: var(--bg); cursor: pointer; box-shadow: var(--neu-small); transition: all 0.2s; }
+.count-btn.selected { border-color: var(--accent); background: rgba(108,99,255,0.1); box-shadow: 0 4px 16px rgba(108,99,255,0.25); }
+.count-num { font-size: 24px; font-weight: 800; color: var(--fg); }
+.count-time { font-size: 11px; color: var(--muted); margin-top: 2px; }

@@ -1,0 +1,184 @@
+.wellness-card { padding: 24px; }
+.wellness-header { text-align: center; margin-bottom: 20px; }
+.wellness-heart { color: #e84393; font-size: 28px; margin-bottom: 8px; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+.wellness-header h3 { margin: 4px 0; font-size: 18px; }
+.wellness-header p { color: var(--muted); font-size: 13px; margin: 0; }
+.wellness-progress-bar { height: 4px; background: var(--border); border-radius: 4px; margin-bottom: 24px; }
+.wellness-progress-fill { height: 100%; background: linear-gradient(90deg, #6C63FF, #e84393); border-radius: 4px; transition: width 0.4s ease; }
+.wellness-step { min-height: 140px; }
+.wellness-step-title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; margin-bottom: 20px; color: var(--fg); }
+.mood-emojis { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.mood-emoji { background: var(--bg); border: 2px solid transparent; border-radius: 16px; padding: 12px 16px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: var(--neu-small); transition: all 0.2s; font-size: 28px; }
+.mood-emoji small { font-size: 11px; color: var(--muted); }
+.mood-emoji.selected { border-color: #6C63FF; background: rgba(108,99,255,0.1); transform: translateY(-3px); }
+.mood-emoji:hover { transform: translateY(-2px); }
+.sleep-slider-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.sleep-slider { width: 100%; accent-color: #6C63FF; }
+.sleep-display { font-size: 42px; font-weight: 700; color: var(--accent); }
+.sleep-hint { font-size: 13px; color: var(--muted); }
+.wellness-row label { font-size: 13px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 10px; }
+.level-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.level-btn { padding: 6px 12px; border-radius: 20px; border: none; cursor: pointer; font-size: 12px; font-weight: 500; background: var(--bg); color: var(--muted); box-shadow: var(--neu-small); transition: all 0.2s; }
+.level-btn.sel-stress { background: #e17055; color: #fff; }
+.level-btn.sel-energy { background: #00B894; color: #fff; }
+.exercise-btns { display: flex; gap: 16px; justify-content: center; margin-top: 8px; }
+.exercise-opt { padding: 16px 24px; border-radius: 16px; border: 2px solid transparent; background: var(--bg); cursor: pointer; font-size: 15px; font-weight: 600; box-shadow: var(--neu-small); transition: all 0.2s; color: var(--fg); }
+.exercise-opt.yes { border-color: #00B894; background: rgba(0,184,148,0.1); }
+.exercise-opt.no { border-color: var(--border); }
+.exercise-opt:hover { transform: translateY(-2px); }
+.wellness-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+  .wellness-card {
+    padding: 20px;
+  }
+
+  .wellness-header h3 {
+    font-size: 16px;
+  }
+
+  .wellness-header p {
+    font-size: 12px;
+  }
+
+  .wellness-step {
+    min-height: 120px;
+  }
+
+  .wellness-step-title {
+    font-size: 14px;
+  }
+
+  .mood-emojis {
+    gap: 8px;
+  }
+
+  .mood-emoji {
+    padding: 10px 14px;
+    font-size: 24px;
+  }
+
+  .mood-emoji small {
+    font-size: 10px;
+  }
+
+  .sleep-display {
+    font-size: 36px;
+  }
+
+  .sleep-hint {
+    font-size: 12px;
+  }
+
+  .wellness-row label {
+    font-size: 12px;
+  }
+
+  .level-btns {
+    gap: 5px;
+  }
+
+  .level-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .exercise-btns {
+    gap: 12px;
+  }
+
+  .exercise-opt {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .wellness-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .wellness-footer button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .wellness-card {
+    padding: 16px;
+  }
+
+  .wellness-heart {
+    font-size: 24px;
+  }
+
+  .wellness-header h3 {
+    font-size: 15px;
+  }
+
+  .wellness-header p {
+    font-size: 11px;
+  }
+
+  .wellness-step {
+    min-height: 100px;
+  }
+
+  .wellness-step-title {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .mood-emojis {
+    gap: 6px;
+  }
+
+  .mood-emoji {
+    padding: 8px 12px;
+    font-size: 20px;
+  }
+
+  .mood-emoji small {
+    font-size: 9px;
+  }
+
+  .sleep-display {
+    font-size: 32px;
+  }
+
+  .sleep-hint {
+    font-size: 11px;
+  }
+
+  .wellness-row label {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .level-btns {
+    gap: 4px;
+  }
+
+  .level-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .exercise-btns {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .exercise-opt {
+    padding: 12px 16px;
+    font-size: 13px;
+    width: 100%;
+  }
+
+  .wellness-footer {
+    margin-top: 20px;
+    padding-top: 12px;
+  }
+}

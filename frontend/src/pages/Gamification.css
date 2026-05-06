@@ -145,8 +145,36 @@
   .gam-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .challenges-grid { grid-template-columns: 1fr; }
   .badges-grid { grid-template-columns: repeat(2, 1fr); }
+  .gam-tabs { padding: 4px; gap: 4px; }
+  .gam-tab { padding: 6px 12px; font-size: 12px; }
+  .leaderboard-table { font-size: 13px; }
+  .leaderboard-table th, .leaderboard-table td { padding: 10px 12px; }
+  .activity-item { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .activity-time { margin-left: 0; }
 }
 @media (max-width: 480px) {
-  .gam-stats-grid { grid-template-columns: 1fr 1fr; }
+  .gam-stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .gam-stat-card { padding: 18px 16px; }
+  .gam-stat-emoji { width: 40px; height: 40px; font-size: 18px; }
+  .gam-stat-val { font-size: 22px; }
   .badges-grid { grid-template-columns: 1fr; }
+  .challenge-card { flex-direction: column; text-align: center; }
+  .ch-icon { margin: 0 auto; }
+  .ch-xp { margin-top: 8px; }
+  .leaderboard-card { overflow-x: auto; }
+  .leaderboard-table { min-width: 500px; }
+  .gam-tabs { flex-direction: column; }
+  .gam-tab { width: 100%; justify-content: center; }
 }
+
+/* Tabs */
+.gam-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; background: var(--bg); box-shadow: var(--neu-raised); border-radius: 14px; padding: 6px; }
+.gam-tab { padding: 8px 16px; border-radius: 10px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; background: transparent; color: var(--muted); transition: all 0.2s; }
+.gam-tab.active { background: var(--accent); color: #fff; box-shadow: 0 4px 12px rgba(108,99,255,0.3); }
+.gam-tab:hover:not(.active) { background: rgba(108,99,255,0.08); color: var(--accent); }
+/* MCQ Options in gamification quiz */
+.mcq-option { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 12px; border: 2px solid var(--border); background: var(--bg); cursor: pointer; text-align: left; transition: all 0.2s; box-shadow: var(--neu-small); width: 100%; }
+.mcq-option:hover { border-color: var(--accent); background: rgba(108,99,255,0.05); }
+.mcq-option.selected { border-color: var(--accent); background: rgba(108,99,255,0.1); }
+.mcq-option-key { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; box-shadow: var(--neu-small); }
+.mcq-option.selected .mcq-option-key { background: var(--accent); border-color: var(--accent); color: #fff; }

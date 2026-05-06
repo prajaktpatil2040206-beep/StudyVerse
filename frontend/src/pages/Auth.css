@@ -103,7 +103,20 @@
 }
 .success-card p { color: var(--muted); }
 
+/* Button spinner for loading states */
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
 @media (max-width: 768px) {
   .auth-card { padding: 32px 24px; }
   .step-indicator { gap: 24px; }
+  .auth-actions { flex-direction: column; }
+  .auth-actions .btn { width: 100%; }
 }

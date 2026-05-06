@@ -87,3 +87,33 @@
   color: var(--muted); font-size: 14px; transition: var(--transition);
 }
 .todo-actions button:hover { box-shadow: var(--neu-raised); color: var(--fg); }
+.todo-actions button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Expired tasks */
+.todo-item.expired { opacity: 0.55; }
+.todo-item.expired .todo-title { text-decoration: line-through; color: var(--muted); }
+.todo-deadline.expired { color: #e17055; background: rgba(225,112,85,0.1); }
+.todo-expired-label { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; color: #e17055; font-weight: 600; background: rgba(225,112,85,0.1); padding: 1px 6px; border-radius: 8px; margin-top: 2px; }
+.todo-check.locked { background: rgba(225,112,85,0.1); color: #e17055; cursor: not-allowed; }
+.todo-check.locked:hover { box-shadow: var(--neu-inset-sm); }
+
+
+@media (max-width: 768px) {
+  .todo-container { padding: 20px; }
+  .todo-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .todo-form-row { flex-direction: column; }
+  .todo-form-row .input-field { width: 100%; }
+  .todo-item { padding: 12px; }
+  .todo-title { font-size: 13px; }
+  .todo-desc { font-size: 11px; }
+}
+
+@media (max-width: 480px) {
+  .todo-container { padding: 16px; }
+  .todo-header h3 { font-size: 16px; }
+  .todo-item { flex-wrap: wrap; gap: 8px; }
+  .todo-content { width: 100%; }
+  .todo-deadline { margin-top: 4px; }
+  .todo-actions { margin-top: 4px; }
+  .todo-check { width: 22px; height: 22px; }
+}

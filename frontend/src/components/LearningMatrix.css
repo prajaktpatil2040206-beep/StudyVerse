@@ -1,0 +1,165 @@
+.matrix-container { padding: 24px 0; }
+.matrix-header { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.matrix-header h3 { margin: 0; font-size: 18px; flex: 1; }
+.matrix-header p { color: var(--muted); font-size: 13px; margin: 2px 0 0; width: 100%; }
+.matrix-axes { position: relative; margin-bottom: 4px; }
+.axis-label { font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; }
+.axis-y { text-align: center; margin-bottom: 4px; }
+.axis-x { text-align: center; margin-top: 8px; }
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+.matrix-quadrant {
+  border: 1px solid;
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 140px;
+  transition: all 0.3s;
+}
+.matrix-quadrant:hover { transform: translateY(-2px); box-shadow: var(--neu-raised); }
+.mq-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.mq-icon { font-size: 20px; flex-shrink: 0; }
+.mq-label { font-size: 14px; font-weight: 700; }
+.mq-sub { font-size: 11px; opacity: 0.8; margin-top: 1px; }
+.mq-tasks { display: flex; flex-direction: column; gap: 6px; }
+.mq-task {
+  font-size: 12px;
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid;
+  border-radius: 4px;
+  color: var(--fg);
+  line-height: 1.4;
+}
+.mq-empty { font-size: 12px; color: var(--muted); font-style: italic; }
+.mq-loading { font-size: 12px; color: var(--muted); animation: pulse 1s infinite; }
+.matrix-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.legend-item span {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .matrix-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+  .matrix-container {
+    padding: 20px 0;
+  }
+
+  .matrix-header h3 {
+    font-size: 16px;
+  }
+
+  .matrix-header p {
+    font-size: 12px;
+  }
+
+  .matrix-grid {
+    gap: 8px;
+  }
+
+  .matrix-quadrant {
+    padding: 14px;
+    min-height: 120px;
+  }
+
+  .mq-label {
+    font-size: 13px;
+  }
+
+  .mq-sub {
+    font-size: 10px;
+  }
+
+  .mq-task {
+    font-size: 11px;
+    padding: 5px 7px;
+  }
+
+  .matrix-legend {
+    gap: 10px;
+  }
+
+  .legend-item {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .matrix-container {
+    padding: 16px 0;
+  }
+
+  .matrix-header h3 {
+    font-size: 15px;
+  }
+
+  .matrix-header p {
+    font-size: 11px;
+  }
+
+  .matrix-grid {
+    gap: 6px;
+  }
+
+  .matrix-quadrant {
+    padding: 12px;
+    min-height: 100px;
+  }
+
+  .mq-icon {
+    font-size: 18px;
+  }
+
+  .mq-label {
+    font-size: 12px;
+  }
+
+  .mq-sub {
+    font-size: 9px;
+  }
+
+  .mq-task {
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+
+  .matrix-legend {
+    gap: 8px;
+  }
+
+  .legend-item {
+    font-size: 9px;
+  }
+
+  .legend-item span {
+    width: 8px;
+    height: 8px;
+  }
+}
