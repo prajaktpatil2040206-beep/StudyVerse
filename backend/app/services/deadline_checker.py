@@ -20,7 +20,7 @@ class DeadlineChecker:
             # For now, we'll implement the notification logic
             # The actual user/task fetching will be done when integrated with Firebase
             
-            print(f"🔍 Checking deadlines at {datetime.now().strftime('%H:%M:%S')}")
+            print(f"[SEARCH] Checking deadlines at {datetime.now().strftime('%H:%M:%S')}")
             
             # This will be implemented when Firebase integration is complete
             # For now, the logic is ready to be called from the frontend
@@ -93,7 +93,7 @@ class DeadlineChecker:
                     f"⏰ StudyVerse Reminder: '{task_title}' is due in {time_left} at {due_time}. Complete it now!"
                 )
             
-            print(f"✅ Reminder sent for task: {task_title}")
+            print(f"[OK] Reminder sent for task: {task_title}")
         
         except Exception as e:
             print(f"Failed to send reminder: {e}")
@@ -124,7 +124,7 @@ class DeadlineChecker:
                     f"⚠️ StudyVerse: Task '{task_title}' deadline has passed. Review your schedule!"
                 )
             
-            print(f"⚠️ Expired notification sent for: {task_title}")
+            print(f"[WARN] Expired notification sent for: {task_title}")
         
         except Exception as e:
             print(f"Failed to send expired notification: {e}")

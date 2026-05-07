@@ -5,9 +5,8 @@ Uses AI and efficient algorithms to create personalized schedules
 from datetime import datetime, timedelta
 from typing import List, Dict
 import requests
-import os
 
-ULTRATHINKZ_API_KEY = os.getenv('ULTRATHINKZ_API_KEY', '')
+ULTRATHINKZ_API_KEY = "91ec707942c84f04997c1e561f9320b4.CqFwVRn7dkEj25qP"
 ULTRATHINKZ_URL = "https://api.ultrathinkz.ai/v1/chat/completions"
 
 class TimetableGenerator:

@@ -2,7 +2,7 @@
 Security middleware for StudyVerse API
 Implements rate limiting, security headers, and request validation
 """
-from fastapi import Request, HTTPException
+from fastapi import Request
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from collections import defaultdict

@@ -55,7 +55,7 @@ app.include_router(scraper.router, prefix="/api/scraper", tags=["Scraper"])
 # Daily reset function (runs at 12:00 AM)
 def daily_reset():
     """Reset daily tasks, quizzes, and challenges"""
-    print(f"🔄 Daily reset triggered at {datetime.now()}")
+    print(f"[RELOAD] Daily reset triggered at {datetime.now()}")
     
     # This function will be called by the scheduler at midnight
     # It resets:
@@ -66,7 +66,7 @@ def daily_reset():
     # Note: Firebase data is date-keyed, so new day automatically creates new entries
     # This function can be used for cleanup or sending daily reports
     
-    print("✅ Daily reset completed")
+    print("[OK] Daily reset completed")
 
 # Schedule daily reset at 12:00 AM (midnight)
 scheduler.schedule_daily(0, 0, daily_reset)
@@ -76,14 +76,14 @@ async def startup_event():
     """Initialize scheduler and deadline checker on app startup"""
     scheduler.start()
     deadline_checker.start()
-    print("✅ StudyVerse API started with scheduler and deadline checker")
+    print("[OK] StudyVerse API started with scheduler and deadline checker")
 
 @app.on_event("shutdown")
 async def shutdown_event():
     """Stop scheduler and deadline checker on app shutdown"""
     scheduler.stop()
     deadline_checker.stop()
-    print("🛑 StudyVerse API stopped")
+    print("[STOP] StudyVerse API stopped")
 
 @app.get("/")
 def root():

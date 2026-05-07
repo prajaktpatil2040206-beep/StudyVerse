@@ -170,15 +170,15 @@ def setup():
     mgr = ModelManager.get_instance()
 
     if mgr.is_downloaded():
-        print(f"[✓] Model already downloaded at: {MODEL_DIR}")
+        print(f"[OK] Model already downloaded at: {MODEL_DIR}")
     else:
-        print(f"[↓] Model not found. Downloading {MODEL_NAME} ...")
+        print(f"[DOWNLOAD] Model not found. Downloading {MODEL_NAME} ...")
         mgr.download_model()
-        print("[✓] Download complete!")
+        print("[OK] Download complete!")
 
-    print("\n[→] Loading model to verify ...")
+    print("\n[LOAD] Loading model to verify ...")
     mgr.load_model()
-    print("[✓] Model verified and ready!")
+    print("[OK] Model verified and ready!")
     print("=" * 60)
 
 

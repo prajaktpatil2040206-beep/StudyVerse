@@ -44,9 +44,9 @@ class SchedulerService:
                             task['callback']()
                         
                         task['last_run'] = now
-                        print(f"✅ Scheduled task executed at {now}")
+                        print(f"[OK] Scheduled task executed at {now}")
                     except Exception as e:
-                        print(f"❌ Scheduler error: {str(e)}")
+                        print(f"[ERROR] Scheduler error: {str(e)}")
             
             # Sleep for 60 seconds before next check
             await asyncio.sleep(60)
