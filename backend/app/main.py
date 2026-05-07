@@ -22,6 +22,7 @@ app.add_middleware(RateLimitMiddleware)
 # Allow all localhost Vite dev ports — wildcard ("*") cannot be used with
 # allow_credentials=True per the CORS spec (browsers reject it).
 ALLOWED_ORIGINS = [
+    "https://study-verse-six.vercel.app",
     "http://localhost:3000",
     "http://localhost:5173",
     "http://localhost:5174",
