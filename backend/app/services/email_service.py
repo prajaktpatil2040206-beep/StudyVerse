@@ -32,6 +32,12 @@ def send_email(to_email: str, subject: str, body: str):
         return False
 
 def send_otp_email(to_email: str):
+    if not EMAIL_APP_PASSWORD:
+        otp = "123456"
+        otp_store[to_email] = otp
+        print(f"[Email Mock] No app password configured. Use mock OTP: {otp}")
+        return True
+        
     otp = generate_otp()
     otp_store[to_email] = otp
     html = f"""
