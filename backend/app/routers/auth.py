@@ -43,6 +43,8 @@ async def send_otp(req: OtpRequest):
         return {"message": "OTP sent successfully", "email": req.email}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except HTTPException:
+        raise
     except Exception as e:
         # Don't expose internal errors in production
         raise HTTPException(status_code=500, detail="An error occurred while sending OTP")
