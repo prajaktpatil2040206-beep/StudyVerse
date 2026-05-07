@@ -132,7 +132,7 @@ class DeadlineChecker:
     async def run(self):
         """Run the deadline checker loop"""
         self.running = True
-        print("🔔 Deadline checker started")
+        print("[DeadlineChecker] Started")
         
         while self.running:
             await self.check_deadlines()

@@ -60,7 +60,7 @@ class SchedulerService:
         
         thread = threading.Thread(target=run_loop, daemon=True)
         thread.start()
-        print("🕐 Scheduler started")
+        print("[Scheduler] Started")
     
     def stop(self):
         """Stop the scheduler"""

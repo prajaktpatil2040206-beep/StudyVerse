@@ -42,8 +42,8 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
 class RateLimitMiddleware(BaseHTTPMiddleware):
     """Rate limiting middleware"""
     async def dispatch(self, request: Request, call_next):
-        # Get client IP
-        client_ip = request.client.host
+        # Get client IP safely (handles proxies and Render environment)
+        client_ip = request.client.host if request.client else request.headers.get("X-Forwarded-For", "127.0.0.1")
         path = request.url.path
         
         # Get rate limit config for this endpoint
