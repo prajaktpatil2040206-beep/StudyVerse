@@ -90,6 +90,9 @@
     flex-direction: column; background: var(--bg);
     padding: 16px; gap: 4px;
     box-shadow: 0 12px 20px rgb(163,177,198,0.5);
+    z-index: 99;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
   }
   .navbar-links.open { display: flex; }
   .nav-link { width: 100%; padding: 14px 16px; }
@@ -103,14 +106,19 @@
   .nav-toggle:hover { box-shadow: var(--neu-raised); }
   .navbar-brand { font-size: 18px; }
   .brand-logo { width: 34px; height: 34px; }
+  .nav-theme { width: 36px; height: 36px; }
 }
 
 @media (max-width: 480px) {
-  .navbar { height: 64px; }
-  .navbar-brand { font-size: 16px; }
-  .brand-logo { width: 32px; height: 32px; }
-  .nav-bell, .nav-logout, .nav-toggle { width: 36px; height: 36px; }
-  .nav-avatar { width: 34px; height: 34px; font-size: 14px; }
-  .navbar-actions { gap: 8px; }
-  .navbar-links { top: 64px; }
+  .navbar { height: 60px; }
+  .navbar-brand { font-size: 15px; gap: 8px; }
+  .brand-logo { width: 30px; height: 30px; border-radius: 10px; }
+  .brand-text { display: none; }
+  .nav-bell, .nav-logout, .nav-toggle { width: 34px; height: 34px; }
+  .nav-bell svg, .nav-logout svg, .nav-toggle svg { width: 16px; height: 16px; }
+  .nav-avatar { width: 32px; height: 32px; font-size: 13px; }
+  .navbar-actions { gap: 6px; }
+  .navbar-links { top: 60px; max-height: calc(100vh - 60px); }
+  .nav-link { padding: 12px 14px; font-size: 13px; }
+  .nav-theme { width: 34px; height: 34px; }
 }

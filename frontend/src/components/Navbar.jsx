@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { FiHome, FiAward, FiCpu, FiBarChart2, FiLogOut, FiMenu, FiX, FiBell, FiMoon, FiSun, FiLayout } from 'react-icons/fi';
+import { FiHome, FiAward, FiCpu, FiBarChart2, FiLogOut, FiMenu, FiX, FiBell, FiMoon, FiSun, FiLayout, FiSearch } from 'react-icons/fi';
 import NotificationPanel from './NotificationPanel';
 import './Navbar.css';
 
@@ -12,6 +12,7 @@ const navLinks = [
   { path: '/mentor', label: 'Mentor AI', icon: <FiCpu /> },
   { path: '/dashboard', label: 'Dashboard', icon: <FiBarChart2 /> },
   { path: '/kanban', label: 'Kanban', icon: <FiLayout /> },
+  { path: '/scraper', label: 'Scraper', icon: <FiSearch /> },
 ];
 
 export default function Navbar() {

@@ -433,35 +433,49 @@
 
 @media (max-width: 768px) {
   .welcome-text h1 { font-size: 22px; }
-  .quick-stats { justify-content: center; }
-  .quick-stat { min-width: 100px; }
-  .hero-quote-card { padding: 20px 24px; }
+  .welcome-sub { font-size: 13px; }
+  .quick-stats { justify-content: flex-start; width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+  .quick-stat { min-width: 120px; flex-shrink: 0; padding: 12px 16px; }
+  .hero-quote-card { padding: 20px; }
   .quote-text { font-size: 15px; }
-  .todo-container { padding: 20px; }
   .pomodoro-card { padding: 20px; }
   .pomodoro-form-row { flex-direction: column; }
   .pomodoro-controls { gap: 12px; }
   .quiz-card { padding: 20px; }
   .mcq-options { gap: 8px; }
   .results-header { flex-direction: column; align-items: flex-start; }
+  .pomodoro-stats-row { gap: 12px; }
+  .pomo-stat { padding: 6px 12px; }
+  .pomo-stat-val { font-size: 16px; }
 }
 
 @media (max-width: 480px) {
-  .welcome-text h1 { font-size: 20px; }
-  .quick-stats { width: 100%; }
-  .quick-stat { flex: 1; min-width: 90px; padding: 12px 14px; }
-  .qs-val { font-size: 18px; }
-  .hero-quote-card { padding: 18px 20px; }
-  .quote-icon { width: 40px; height: 40px; font-size: 18px; }
-  .quote-text { font-size: 14px; }
+  .welcome-text h1 { font-size: 18px; }
+  .welcome-sub { font-size: 12px; }
+  .quick-stats { width: 100%; gap: 8px; }
+  .quick-stat { flex: 1; min-width: 90px; padding: 10px 12px; }
+  .qs-icon { width: 32px; height: 32px; font-size: 14px; }
+  .qs-val { font-size: 16px; }
+  .qs-label { font-size: 10px; }
+  .hero-quote-card { padding: 16px; gap: 12px; }
+  .quote-icon { width: 36px; height: 36px; font-size: 16px; }
+  .quote-text { font-size: 13px; }
+  .pomodoro-card { padding: 16px; gap: 16px; }
+  .pomodoro-ring-wrap { width: 120px; height: 120px; }
+  .pomodoro-time { font-size: 24px; }
+  .pomodoro-mode-label { font-size: 10px; }
+  .pomodoro-info h3 { font-size: 16px; }
+  .pomodoro-info p { font-size: 12px; }
+  .pomodoro-stats-row { flex-direction: column; gap: 8px; }
+  .pomo-stat { flex: 1; }
   .todo-header { flex-direction: column; align-items: flex-start; }
   .todo-form-row { flex-direction: column; }
   .todo-form-row .input-field { width: 100%; }
-  .todo-item { padding: 12px; }
-  .todo-actions { flex-direction: column; }
-  .pomodoro-ring-wrap { width: 120px; height: 120px; }
-  .pomodoro-countdown { font-size: 28px; }
-  .pomodoro-subject-row { flex-direction: column; align-items: flex-start; }
-  .mcq-option { padding: 10px 14px; }
+  .todo-item { padding: 10px; }
+  .todo-actions { flex-direction: column; gap: 6px; }
+  .mcq-option { padding: 10px 12px; font-size: 13px; }
+  .mcq-option-key { width: 24px; height: 24px; font-size: 11px; }
   .score-big { font-size: 28px; }
+  .quiz-card h3 { font-size: 15px; }
+  .result-card { padding: 16px; }
 }

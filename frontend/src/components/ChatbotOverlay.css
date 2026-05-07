@@ -76,6 +76,19 @@
 .chatbot-input button:hover { transform: scale(1.05); box-shadow: var(--neu-raised); }
 .chatbot-input button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
+@media (max-width: 768px) {
+  .chatbot-fab { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 20px; }
+  .chatbot-panel { left: 12px; right: 12px; bottom: 82px; width: auto; border-radius: 20px; }
+  .chatbot-msgs { max-height: 280px; }
+}
+
 @media (max-width: 480px) {
-  .chatbot-panel { left: 16px; right: 16px; width: auto; }
+  .chatbot-fab { bottom: 16px; right: 16px; width: 48px; height: 48px; font-size: 18px; }
+  .chatbot-panel { left: 8px; right: 8px; bottom: 76px; width: auto; border-radius: 16px; }
+  .chatbot-header { padding: 12px 16px; font-size: 14px; }
+  .chatbot-msgs { min-height: 160px; max-height: 250px; padding: 12px; gap: 10px; }
+  .cb-bubble { font-size: 12px; padding: 8px 12px; max-width: 85%; }
+  .chatbot-input { padding: 10px 12px; gap: 6px; }
+  .chatbot-input input { padding: 8px 12px; font-size: 12px; }
+  .chatbot-input button { width: 32px; height: 32px; }
 }

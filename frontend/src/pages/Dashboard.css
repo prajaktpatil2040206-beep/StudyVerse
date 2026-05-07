@@ -285,11 +285,53 @@
 .insights-empty { padding: 32px; text-align: center; color: var(--muted); font-size: 14px; }
 
 @media (max-width: 768px) {
+  .dash-top-grid { grid-template-columns: 1fr; }
+  .stats-sidebar { flex-direction: row; flex-wrap: wrap; }
+  .mini-stat { flex: 1; min-width: 140px; }
+  .charts-grid { grid-template-columns: 1fr; }
+  .suggestions-grid { grid-template-columns: 1fr; }
+  .profile-banner { flex-direction: column; align-items: flex-start; }
+  .profile-actions-row { width: 100%; }
+  .profile-actions-row .btn { flex: 1; }
+  .stats-row { gap: 16px; flex-wrap: wrap; }
+  .level-stats-bar { flex-direction: column; gap: 16px; }
   .today-stats-row { grid-template-columns: repeat(2,1fr); }
   .insights-grid { grid-template-columns: 1fr; }
   .goals-overview { grid-template-columns: 1fr; }
-  .profile-banner { flex-direction: column; align-items: flex-start; }
-  .stats-row { gap: 16px; }
+  .section-header-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .chart-card { padding: 18px; }
+}
+
+@media (max-width: 480px) {
+  .profile-avatar { width: 48px; height: 48px; font-size: 20px; }
+  .profile-name { font-size: 18px; }
+  .profile-email { font-size: 12px; }
+  .profile-content { gap: 14px; }
+  .mini-stat { min-width: 100%; padding: 12px 14px; }
+  .ms-icon { width: 32px; height: 32px; font-size: 14px; }
+  .ms-val { font-size: 16px; }
+  .ms-label { font-size: 10px; }
+  .today-stats-row { gap: 10px; }
+  .today-stat-card { padding: 14px; }
+  .ts-icon { font-size: 18px; }
+  .ts-val { font-size: 18px; }
+  .ts-label { font-size: 10px; }
+  .stat-item { min-width: 50px; }
+  .stat-val { font-size: 16px; }
+  .stat-label { font-size: 10px; }
+  .level-label { font-size: 13px; }
+  .level-xp { font-size: 11px; }
+  .insight-card { padding: 16px; }
+  .insight-card h4 { font-size: 14px; }
+  .insight-card p { font-size: 12px; }
+  .suggestion-card { padding: 16px; }
+  .suggestion-icon { width: 32px; height: 32px; font-size: 14px; }
+  .go-header h4 { font-size: 13px; }
+  .goal-overview-card { padding: 14px; }
+  .subject-add-row { flex-direction: column; }
+  .subject-add-row .input-field { width: 100%; }
+  .chart-card { padding: 14px; }
+  .chart-card h3 { font-size: 13px; }
 }
 
 /* ── Improved Profile Edit UI ── */

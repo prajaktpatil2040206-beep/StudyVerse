@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware  # GZIP compression
-from app.routers import auth, ai, notifications, quiz, productivity
+from app.routers import auth, ai, notifications, quiz, productivity, scraper
 from app.services.scheduler_service import scheduler
 from app.services.notification_service import notification_service
 from app.services.deadline_checker import deadline_checker
@@ -50,6 +50,7 @@ app.include_router(ai.router, prefix="/api/ai", tags=["AI"])
 app.include_router(notifications.router, prefix="/api/notifications", tags=["Notifications"])
 app.include_router(quiz.router, prefix="/api/quiz", tags=["Quiz"])
 app.include_router(productivity.router, prefix="/api/productivity", tags=["Productivity"])
+app.include_router(scraper.router, prefix="/api/scraper", tags=["Scraper"])
 
 # Daily reset function (runs at 12:00 AM)
 def daily_reset():

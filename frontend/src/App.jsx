@@ -12,6 +12,7 @@ import Gamification from './pages/Gamification';
 import Mentor from './pages/Mentor';
 import Dashboard from './pages/Dashboard';
 import Kanban from './pages/Kanban';
+import WebScraper from './pages/WebScraper';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -41,6 +42,7 @@ function AppRoutes() {
         <Route path="/mentor" element={<ProtectedRoute><Mentor /></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/kanban" element={<ProtectedRoute><Kanban /></ProtectedRoute>} />
+        <Route path="/scraper" element={<ProtectedRoute><WebScraper /></ProtectedRoute>} />
       </Routes>
       <ChatbotOverlay />
     </>
